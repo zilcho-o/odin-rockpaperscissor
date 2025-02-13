@@ -3,11 +3,11 @@ let computerScore = 0;
 
 
 function getComputerChoice() {
-    choice = Math.random();
-    if (choice <=0.3) {
+    choice = Math.floor(Math.random()*9);
+    if (choice <3) {
         return "rock";
     }
-    else if (choice <=0.6) {
+    else if (choice <6) {
         return "paper";
     }
     return "scissors";
@@ -16,27 +16,19 @@ function getComputerChoice() {
 
 
     function playRound(computerChoice, humanChoice) {
-        const p3 = document.createElement('p');
-        options.parentNode.insertBefore(p3, options.nextSibling);
-        const div = document.createElement("div");
         if (computerChoice == humanChoice) {
             div.textContent = "It's a tie.";
-            p3.appendChild(div);
-
             return 
          }
          else if (computerChoice == "rock") {
             if (humanChoice == "paper") {
                 humanScore ++;
                 div.textContent = "You win! Paper beats rock.";
-                p3.appendChild(div);
-
                 return 
             }
             else {
                 computerScore ++;
                 div.textContent = "You lose! Rock beats scissors.";
-                p3.appendChild(div);
                 return 
             }
          }
@@ -44,13 +36,11 @@ function getComputerChoice() {
             if (humanChoice == "scissors") {
                 humanScore ++;
                 div.textContent = "You win! Scissors beats paper.";
-                p3.appendChild(div);
                 return 
             }
             else {
                 computerScore ++;
                 div.textContent = "You lose! Paper beats rock.";
-                p3.appendChild(div);
                 return 
             }
          }
@@ -58,34 +48,14 @@ function getComputerChoice() {
             if (humanChoice == "rock") {
                 humanScore ++;
                 div.textContent = "You win! Rock beats scissors.";
-                p3.appendChild(div);
                 return 
             }
             else {
                 computerScore ++;
                 div.textContent = "You lose! Scissors beats paper.";
-                p3.appendChild(div);
                 return 
             }
          }
-    
-
-    playRound(getComputerChoice(), getHumanChoice());
-    /*
-    round = 5;
-    for (i=0; i<round; i++) {
-        playRound(getComputerChoice(), getHumanChoice());
-    }
-    if (humanScore>computerScore) {
-        return "You're the winner!";
-    }
-    else if (humanScore<computerScore) {
-        return "You're a loser!";
-    }
-    else {
-        return "It's a tie.";
-    }
-        */
 }
 
 function alertDelayWin() {
@@ -116,6 +86,11 @@ HScore.textContent = "Player Score: "
 CScore.textContent = "Computer Score: "
 score.appendChild(HScore);
 score.appendChild(CScore);
+
+const p3 = document.createElement('p');
+options.parentNode.insertBefore(p3, options.nextSibling);
+const div = document.createElement("div");
+p3.appendChild(div);
 
 options.addEventListener("click", (event) => {
     let target = event.target;
